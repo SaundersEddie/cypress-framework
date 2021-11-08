@@ -1,0 +1,24 @@
+{
+  "name": "cypress-framework",
+  "version": "1.0.0",
+  "description": "Testing the-internet with Cypress Framework",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SaundersEddie/cypress-framework.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SaundersEddie/cypress-framework/issues"
+  },
+  "homepage": "https://github.com/SaundersEddie/cypress-framework#readme",
+  "dependencies": {
+    "cypress": "^8.7.0",
+    "cypress-iframe": "^1.0.1"
+  }
+}
