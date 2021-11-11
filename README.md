@@ -22,6 +22,7 @@ You can find the test cases in the below mentioned Wiki
 
 ### Wiki
 The official wiki can be found here:  
+https://github.com/SaundersEddie/cypress-framework/wiki
 
 ### Authour
 Edwyn Saunders
