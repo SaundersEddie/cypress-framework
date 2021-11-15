@@ -13,18 +13,19 @@
 
 ///<reference types="Cypress" />
 
-describe('Testing checkboxes and dropdowns', function () {
-    it('Scenario: Click checkboxes and validate clicked or unclicked status', function () {
+describe('Testing checkboxes and dropdowns', () => {
+    it('Scenario: Click checkboxes and validate clicked or unclicked status', () => {
         cy.visit('https://the-internet.herokuapp.com/')
         cy.contains('Checkboxes').click()
-        cy.get('[type="checkbox"]').eq(0).check()
-        cy.get('[type="checkbox"]').eq(1).uncheck()
+        cy.get('[type="checkbox"]').eq(0).check().should('be.checked')
+        cy.get('[type="checkbox"]').eq(1).uncheck().should('not.be.checked')
     })
-    it('Scenario: Select Option 1 then Option 2 on dropdown', function () {
+    it('Scenario: Select Option 1 then Option 2 on dropdown', () => {
         cy.visit('https://the-internet.herokuapp.com/')
         cy.contains('Dropdown').click()
-        cy.get('select').select('Option 2')
-    })
+        cy.get('select').select('Option 1').should('have.value', 1)
+        cy.get('select').select('Option 2').should('have.value', 2)
+    });
 })
 
 
