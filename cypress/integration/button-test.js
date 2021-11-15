@@ -14,8 +14,8 @@
 
 ///<reference types="Cypress" />
 
-describe("Testing Buttons", function () {
-    it('Scenario: Ensure the functionality to add/remove button is correct', function () {
+describe("Testing Buttons", () => {
+    it('Scenario: Ensure the functionality to add/remove button is correct', () => {
         cy.visit('https://the-internet.herokuapp.com/')
         cy.contains('Add/Remove Elements').click()
         cy.contains('Add Element').click()
@@ -23,7 +23,7 @@ describe("Testing Buttons", function () {
         cy.contains('Delete').click()
         cy.get('Delete').should('not.exist')
     })
-    it('Scenario: Ensure the functionality to add/remove multiple buttons is correct', function () {
+    it('Scenario: Ensure the functionality to add/remove multiple buttons is correct', () => {
         cy.visit('https://the-internet.herokuapp.com/')
         cy.contains('Add/Remove Elements').click()
         for (let n = 0; n < 4; n++) { cy.contains('Add Element').click() }
