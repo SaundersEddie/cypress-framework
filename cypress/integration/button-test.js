@@ -26,9 +26,9 @@ describe("Testing Buttons", function () {
     it('Scenario: Ensure the functionality to add/remove multiple buttons is correct', function () {
         cy.visit('https://the-internet.herokuapp.com/')
         cy.contains('Add/Remove Elements').click()
-        cy.contains('Add Element').click()
+        for (let n = 0; n < 4; n++) { cy.contains('Add Element').click() }
         cy.contains('Delete').should('be.visible')
-        cy.contains('Delete').click()
+        for (let n = 0; n < 4; n++) { cy.contains('Delete').click() }
         cy.get('Delete').should('not.exist')
     })
 })
