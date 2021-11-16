@@ -39,6 +39,12 @@
 // > Then I enter 'Testing Prompt Box' and click the Ok option
 // > Then verify the result field shows: You entered: Testing Prompt Box
 
+// #### Scenario: When I click a button to get a new message it should not duplicate the existing one  
+// > Given I am on a web page with a message banner  
+// > When I click the 'Click here' element
+// > Then I should see a new message in the notification bar
+// > Then I should expect the new and prior notification to be different
+
 ///<reference types="Cypress" />
 
 describe('Scenario: When I enter a web page I close a modal popup', () => {
@@ -85,10 +91,27 @@ describe('Scenario: When I enter a web page I close a modal popup', () => {
         cy.get('#result').should('contain.text', 'You clicked: Cancel')
     })
     it('Scenario: When I click on the alert request button I enter text in a prompt box', () => {
+        cy.visit('https://the-internet.herokuapp.com/')
+        cy.contains('JavaScript Alerts').click()
         cy.window().then(($win) => {
             cy.stub($win, 'prompt').returns('Testing Prompt Box')
             cy.contains('Click for JS Prompt').click()
         })
         cy.get('#result').contains('You entered: Testing Prompt Box')
+    })
+    it('Scenario: When I click a button to get a new message it should not duplicate the existing one', () => {
+        cy.visit('https://the-internet.herokuapp.com/')
+        cy.contains('Notification Messages').click()
+        cy.get('#flash')
+            .invoke('text')
+            .then((text1) => {
+                console.log(text1)
+                cy.contains('Click here').click()
+                cy.get('#flash')
+                    .invoke('text')
+                    .should((text2) => {
+                        expect(text1).not.to.eq(text2)
+                    })
+            })
     })
 });
