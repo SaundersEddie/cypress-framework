@@ -7,8 +7,27 @@
 // commands please read more here:
 // https://on.cypress.io/custom-commands
 // ***********************************************
-//
-//
+
+Cypress.Commands.add('openBBCSite', () => {
+    cy.visit("https://www.bbc.co.uk");
+    cy.get('.orb-nav-blocks', { timeout: 5000 })
+        .should('be.visible');
+})
+
+Cypress.Commands.add('bbcSearch', (searchText) => {
+    cy.get('#orb-search-q')
+        .type(searchText)
+    cy.get('#orb-search-button')
+        .click()
+})
+
+
+
+
+
+
+
+
 // -- This is a parent command --
 // Cypress.Commands.add('login', (email, password) => { ... })
 //
