@@ -15,7 +15,7 @@
 
 // Import commands.js using ES2015 syntax:
 import './commands'
-import './SauceDemo'
+import '../integration/Tests-SauceDemo/support/SauceDemo'
 
 // Alternatively you can use CommonJS syntax:
 // require('./commands')

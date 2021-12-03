@@ -10,7 +10,7 @@
 
 ///<reference types = "cypress" />
 
-import LoginPage from './pageObjects/LoginPage';
+import LoginPage from '../pageObjects/loginPage';
 
 describe ('Basic End to End Testing', () => {
     it ('Given I am on the Sauce Demo Login Page', () => {

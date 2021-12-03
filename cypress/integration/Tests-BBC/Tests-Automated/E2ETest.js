@@ -8,8 +8,8 @@
 
 ///<reference types = "cypress" />
 
-import HomePage from './pageObjects/HomePage';
-import SportPage from './pageObjects/SportPage';
+import HomePage from '../pageObjects/HomePage';
+import SportPage from '../pageObjects/SportPage';
 
 describe("Basic E2E User Test on BBC Website with no page objects or commands", () => {
     const goodSearch = "Harlow";
