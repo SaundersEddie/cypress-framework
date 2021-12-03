@@ -8,6 +8,8 @@
 // problem_user
 // performance_glitch_user
 
+// PAssword for all is secret_sauce
+
 ///<reference types = "cypress" />
 
 import LoginPage from '../pageObjects/loginPage';

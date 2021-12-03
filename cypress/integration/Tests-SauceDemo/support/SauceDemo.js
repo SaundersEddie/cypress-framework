@@ -8,3 +8,8 @@ Cypress.Commands.add('openSauceDemoSite', () => {
     cy.title().should ('eq', 'Swag Labs');
     cy.url().should('eq','https://www.saucedemo.com/')
 })
+
+Cypress.Commands.add('loginUsers', (users, password) => {
+    console.log (users);
+    console.log (password);
+} )
