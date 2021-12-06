@@ -2,5 +2,6 @@
   "viewportWidth": 1920,
   "viewportHeight": 1080,
   "chromeWebSecurity": false,
-  "testFiles": "**/*Tests-*/*"
+  "testFiles": "**/*Tests-*/*",
+  "fixturesFolder": "cypress/integration/Tests-SauceDemo/fixtures"
 }

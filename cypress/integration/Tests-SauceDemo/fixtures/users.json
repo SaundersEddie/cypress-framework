@@ -1,0 +1,7 @@
+{
+"goodUsername": ["standard_user","locked_out_user","problem_user","performance_glitch_user"],
+"testUser": "standard_user",
+"goodPassword": "secret_sauce",
+"badUsername": ["BadUser1","BadUser2","BadUser3"],
+"badPassword": "BadPassword"
+}

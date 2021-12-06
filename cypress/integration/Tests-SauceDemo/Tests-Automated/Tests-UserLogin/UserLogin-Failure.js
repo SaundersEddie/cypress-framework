@@ -6,22 +6,46 @@
 ///<reference types = "cypress" />
 
 import LoginPage from '../../pageObjects/loginPage';
-import users from './fixtures/users.json';
+import userCredentials from '../../fixtures/users.json';
 
 describe ('Basic End to End Testing', () => {
-    it ('Given I am on the Sauce Demo Login Page', () => {
+    const loginPage = new LoginPage();
+
+    beforeEach(() => {
         cy.openSauceDemoSite();
     })
-
-    it ('Verify I recieve a bad login notification when my username or password is bad', () => {
-        const loginPage = new LoginPage();
-        const userName = 'standard_user'
-        const password = 'secret_sauce'
-        loginPage.getUsernameInput()
-            .clear()
-            .type(`${userName}`)
-        loginPage.getPasswordInput()
-            .clear()
-            .type(`${password}{enter}`)
+    
+    afterEach(() => {
+        loginPage.getLoginError().should('not.be', 'visible');
+        loginPage.getUsernameInput().clear()
+        loginPage.getPasswordInput().clear()
     })
+
+    it ('Verify I recieve a bad login notification when I enter a good username and bad password', () => {
+        userCredentials.goodUsername.forEach(function(ele) {
+            loginPage.getUsernameInput().type(`${ele}`);
+            loginPage.getPasswordInput().type(`${userCredentials.badPassword}`);
+            loginPage.getLoginButton().click();
+            loginPage.getLoginError().should('contain', 'Epic sadface:');
+            loginPage.getLoginErrorCloseButton().click();
+            loginPage.getLoginError().should('not.be', 'visible');
+            loginPage.getUsernameInput().clear()
+            loginPage.getPasswordInput().clear()
+        })
+    })
+
+    it ('Verify I recieve a bad login notification when I enter a bad username and good passowrd', () => {
+        userCredentials.badUsername.forEach(function(ele) {
+            loginPage.getUsernameInput().type(`${ele}`);
+            loginPage.getPasswordInput().type(`${userCredentials.goodPassword}`);
+            loginPage.getLoginButton().click();
+            loginPage.getLoginError().should('contain', 'Epic sadface:');
+            loginPage.getLoginErrorCloseButton().click();
+            loginPage.getLoginError().should('not.be', 'visible');
+            loginPage.getUsernameInput().clear()
+            loginPage.getPasswordInput().clear()
+        })
+    })
+
+
 })
