@@ -6,10 +6,12 @@
 ///<reference types = "cypress" />
 
 import LoginPage from '../../pageObjects/loginPage';
+import ShopPage from '../../pageObjects/shopPage';
 import userCredentials from '../../fixtures/users.json';
 
 describe ('User login success', () => {
     const loginPage = new LoginPage();
+    const shopPage = new ShopPage();
 
     beforeEach(() => {
         cy.openSauceDemoSite();
@@ -22,12 +24,11 @@ describe ('User login success', () => {
     // })
 
    it ('Verify I can login when my username or password is correct', () => {
+        const textSearch = "Products"
         loginPage.getUsernameInput().type(`${userCredentials.goodUsername[0]}`);
         loginPage.getPasswordInput().type(`${userCredentials.goodPassword}`);
         loginPage.getLoginButton().click();
-        // const textSearch = "Products"
-        // cy.get('.title').should('include.text', textSearch);
-
-        cy.get('.shopping_cart_container').should('not.be','invisible')
+        shopPage.getShopPageTitle().should('include.text', textSearch);
+        shopPage.getShoppingCart().should('be.visible')
     })
 })
