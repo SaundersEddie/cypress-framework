@@ -8,7 +8,7 @@
 import LoginPage from '../../pageObjects/loginPage';
 import userCredentials from '../../fixtures/users.json';
 
-describe ('Basic End to End Testing', () => {
+describe ('User login failure due to bad credentials', () => {
     const loginPage = new LoginPage();
 
     beforeEach(() => {

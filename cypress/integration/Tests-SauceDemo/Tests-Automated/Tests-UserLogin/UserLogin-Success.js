@@ -6,26 +6,28 @@
 ///<reference types = "cypress" />
 
 import LoginPage from '../../pageObjects/loginPage';
-import users from './fixtures/users.json';
+import userCredentials from '../../fixtures/users.json';
 
-describe ('Basic End to End Testing', () => {
-    it ('Given I am on the Sauce Demo Login Page', () => {
+describe ('User login success', () => {
+    const loginPage = new LoginPage();
+
+    beforeEach(() => {
         cy.openSauceDemoSite();
     })
 
-    it ('Verify I can login when my username or password is correct', () => {
-        const loginPage = new LoginPage();
-        // const userName = 'standard_user'
-        const userName = users.testUser
-        // const password = 'secret_sauce'
-        const password = users.password
-        cy.loginUsers(users.username, users.password);
-        
-        loginPage.getUsernameInput()
-            .clear()
-            .type(`${userName}`)
-        loginPage.getPasswordInput()
-            .clear()
-            .type(`${password}{enter}`)
+    // afterEach(() => {
+    //     loginPage.getLoginError().should('not.be', 'visible');
+    //     loginPage.getUsernameInput().should('not.be', 'visible');
+    //     loginPage.getPasswordInput().should('not.be', 'visible');
+    // })
+
+   it ('Verify I can login when my username or password is correct', () => {
+        loginPage.getUsernameInput().type(`${userCredentials.goodUsername[0]}`);
+        loginPage.getPasswordInput().type(`${userCredentials.goodPassword}`);
+        loginPage.getLoginButton().click();
+        // const textSearch = "Products"
+        // cy.get('.title').should('include.text', textSearch);
+
+        cy.get('.shopping_cart_container').should('not.be','invisible')
     })
 })
