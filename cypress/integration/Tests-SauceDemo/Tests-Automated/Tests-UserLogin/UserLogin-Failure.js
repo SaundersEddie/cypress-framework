@@ -14,7 +14,7 @@ describe ('Basic End to End Testing', () => {
     beforeEach(() => {
         cy.openSauceDemoSite();
     })
-    
+
     afterEach(() => {
         loginPage.getLoginError().should('not.be', 'visible');
         loginPage.getUsernameInput().clear()
@@ -22,8 +22,8 @@ describe ('Basic End to End Testing', () => {
     })
 
     it ('Verify I recieve a bad login notification when I enter a good username and bad password', () => {
-        userCredentials.goodUsername.forEach(function(ele) {
-            loginPage.getUsernameInput().type(`${ele}`);
+        userCredentials.goodUsername.forEach(function(userName) {
+            loginPage.getUsernameInput().type(`${userName}`);
             loginPage.getPasswordInput().type(`${userCredentials.badPassword}`);
             loginPage.getLoginButton().click();
             loginPage.getLoginError().should('contain', 'Epic sadface:');
@@ -34,9 +34,9 @@ describe ('Basic End to End Testing', () => {
         })
     })
 
-    it ('Verify I recieve a bad login notification when I enter a bad username and good passowrd', () => {
-        userCredentials.badUsername.forEach(function(ele) {
-            loginPage.getUsernameInput().type(`${ele}`);
+    it ('Verify I recieve a bad login notification when I enter a bad username and good password', () => {
+        userCredentials.badUsername.forEach(function(userName) {
+            loginPage.getUsernameInput().type(`${userName}`);
             loginPage.getPasswordInput().type(`${userCredentials.goodPassword}`);
             loginPage.getLoginButton().click();
             loginPage.getLoginError().should('contain', 'Epic sadface:');
@@ -47,5 +47,16 @@ describe ('Basic End to End Testing', () => {
         })
     })
 
-
+    it ('Verify I recieve a bad login notification when I enter a bad username and bad password', () => {
+        userCredentials.badUsername.forEach(function(userName) {
+            loginPage.getUsernameInput().type(`${userName}`);
+            loginPage.getPasswordInput().type(`${userCredentials.badPassword}`);
+            loginPage.getLoginButton().click();
+            loginPage.getLoginError().should('contain', 'Epic sadface:');
+            loginPage.getLoginErrorCloseButton().click();
+            loginPage.getLoginError().should('not.be', 'visible');
+            loginPage.getUsernameInput().clear()
+            loginPage.getPasswordInput().clear()
+        })
+    })
 })
